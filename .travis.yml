@@ -1,5 +1,5 @@
 language: java
-
+sudo: true
 before_script:
   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
 
