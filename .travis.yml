@@ -5,9 +5,13 @@ before_script:
 
 jobs:
   include:
-    - stage: build
+    - stage: job1
       env: JDK=adoptopenjdk14+HotSpot
-      script: source ./install-jdk.sh --url 'https://api.adoptopenjdk.net/v3/binary/latest/14/ga/linux/x64/jdk/hotspot/normal/adoptopenjdk?project=jdk'
+      script:
+        - source ./install-jdk.sh --url 'https://api.adoptopenjdk.net/v3/binary/latest/14/ga/linux/x64/jdk/hotspot/normal/adoptopenjdk?project=jdk'
+        - JAVA_HOME=~/jdk && ./install-jdk.sh --target $JAVA_HOME && PATH=$JAVA_HOME/bin:$PATH
+        - JAVA_HOME=$(./install-jdk.sh --silent --emit-java-home)
+        - JAVA_HOME=$(./install-jdk.sh --emit-java-home | tail --lines 1)
 
 after_script:
   - echo JAVA_HOME = ${JAVA_HOME}
