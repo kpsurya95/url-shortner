@@ -5,6 +5,15 @@ before_install:
   - tar xvzf ${TRAVIS_HOME}/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz
   - export JAVA_HOME=${TRAVIS_HOME}/jdk-14.0.2+12
   - export PATH=$JAVA_HOME/bin:$PATH
+  - ls $JAVA_HOME
+  - java -version
+  - javac -version
+  - mvn -version
+  - env
+  - cd wrappers/java
+  - mvn clean
+  - mvn package
+  - cd ../..
 after_script:
   - echo JAVA_HOME = ${JAVA_HOME}
   - echo PATH = ${PATH}
