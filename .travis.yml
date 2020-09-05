@@ -6,7 +6,7 @@ before_script:
 jobs:
   include:
     - stage: build
-      env: JDK=adoptopenjdk14 + HotSpot
+      env: JDK=adoptopenjdk14+HotSpot
       script: source ./install-jdk.sh --url 'https://api.adoptopenjdk.net/v3/binary/latest/14/ga/linux/x64/jdk/hotspot/normal/adoptopenjdk?project=jdk'
 
 after_script:
@@ -14,3 +14,5 @@ after_script:
   - echo PATH = ${PATH}
   - ls ${JAVA_HOME}
   - java -version
+before_install:
+  - chmod +x mvnw
