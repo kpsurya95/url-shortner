@@ -1,9 +1,9 @@
 language: java
 sudo: true
 before_install:
-  - wget https://api.adoptopenjdk.net/v3/binary/latest/14/ga/linux/x64/jdk/hotspot/normal/adoptopenjdk?project=jdk -P ${TRAVIS_HOME}/JDK-14
-  - tar xvzf ${TRAVIS_HOME}/JDK-14/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz
-  - export JAVA_HOME=${TRAVIS_HOME}/JDK-14/jdk-14.0.2+12
+  - wget https://api.adoptopenjdk.net/v3/binary/latest/14/ga/linux/x64/jdk/hotspot/normal/adoptopenjdk?project=jdk /JDK-14
+  - tar xvzf /JDK-14/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz
+  - export JAVA_HOME=/JDK-14/jdk-14.0.2+12
   - export PATH=$JAVA_HOME/bin:$PATH
 after_script:
   - echo JAVA_HOME = ${JAVA_HOME}
