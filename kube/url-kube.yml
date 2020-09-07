@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: url-shortner
+spec:
+  selector:
+    app: url-shortner
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-shortner
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: url-shortner
+  template:
+    metadata:
+      labels:
+        app: url-shortner
+    spec:
+      containers:
+        - name: url-shortner
+          image: sample/url-shortner:latest
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
