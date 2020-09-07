@@ -12,3 +12,15 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install -y kubectl
   - kubectl version --client
+  - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+  - az upgrade
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  - az --version
+  - docker build -t url-shortner .
+  - docker login ${ACR_REGISTRY} -u ${ACR_REGISTRY_USER} -p ${ACR_REGISTRY_PWD}
+  - docker tag url-shortner ${ACR_REGISTRY}/sample/url-shortner
+  - docker push ${ACR_REGISTRY}/sample/url-shortner
+  - az login --service-principal -u ${ACR_REGISTRY_USER} -p ${ACR_REGISTRY_PWD} --tenant ${TENANT_ID}
+  - az aks get-credentials --resource-group ${AZ_RES_GRP} --name ${AZ_CLSTR}
+  - ls -ltr
