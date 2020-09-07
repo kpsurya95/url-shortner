@@ -33,11 +33,10 @@ WORKDIR /usr/src/url-shortner
 RUN git clone -b master git://github.com/kpsurya95/url-shortner.git
 
 # install npm modules
-WORKDIR /usr/src/url-shortner/sample-doc/url-shortner
 RUN mvn generate-resources install
 RUN chmod 777 /tmp
 
-RUN yes | cp -rf /usr/src/url-shortner/sample-doc/url-shortner/target/url-shortner-0.0.1-SNAPSHOT.jar /usr/src/url-shortner
+RUN yes | cp -rf /usr/src/url-shortner/target/url-shortner-0.0.1-SNAPSHOT.jar /usr/src/url-shortner
 
 CMD ["java", "-jar", "/usr/src/url-shortner/url-shortner-0.0.1-SNAPSHOT.jar"]
 
