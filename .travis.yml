@@ -12,5 +12,5 @@ after_success:
   - az --version
   - docker build -t url-shortner .
   - docker login ${ACR_REGISTRY} -u ${ACR_REGISTRY} -p ${ACR_REGISTRY_PWD}
-  - docker tag latest ${ACR_REGISTRY}/sample/url-shortner
+  - docker tag url-shortner ${ACR_REGISTRY}/sample/url-shortner
   - docker push ${ACR_REGISTRY}/sample/url-shortner
