@@ -10,8 +10,9 @@ RUN apt-get update && apt-get install -y git
 RUN wget --no-verbose -O /tmp/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz https://api.adoptopenjdk.net/v3/binary/latest/14/ga/linux/x64/jdk/hotspot/normal/adoptopenjdk?project=jdk
 RUN tar xzf /tmp/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz -C /opt/
 RUN ln -s /opt/jdk-14.0.2+12 /opt/JDK_14
+RUN ln -s /opt/JDK_14/bin/java /usr/local/bin
 RUN rm -f /tmp/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz
-ENV JAVA_HOME /opt/JDK_14/bin
+ENV JAVA_HOME /opt/JDK_14
 
 ### maven : begin
 
