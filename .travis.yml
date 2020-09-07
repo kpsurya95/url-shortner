@@ -7,8 +7,8 @@ before_install:
   - export JAVA_HOME=jdk-14.0.2+12
   - export PATH=$JAVA_HOME/bin:$PATH
   - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-  - cp kube/url-service-cube.yml /home/travis/.kube/config/url-service-cube.yml
-  - cp kube/url-service-cube.yml /home/travis/.kube/config/url-kube.yml
+  - cp kube/url-service-cube.yml home/travis/.kube/config/url-service-cube.yml
+  - cp kube/url-service-cube.yml home/travis/.kube/config/url-kube.yml
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
