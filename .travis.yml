@@ -11,4 +11,6 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
   - az --version
   - docker build -t url-shortner .
-  - docker images
+  - docker login loginServer -u ${ACR_REGISTRY} -p ${ACR_REGISTRY_PWD}
+  - docker tag latest ${ACR_REGISTRY}/sample/url-shortner
+  - docker push ${ACR_REGISTRY}/sample/url-shortner
