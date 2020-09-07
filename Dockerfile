@@ -5,6 +5,8 @@ RUN  apt-get update \
   && apt-get install -y wget \
   && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get install -y git
+
 RUN wget --no-verbose -O /tmp/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz https://api.adoptopenjdk.net/v3/binary/latest/14/ga/linux/x64/jdk/hotspot/normal/adoptopenjdk?project=jdk
 RUN tar xzf /tmp/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz -C /opt/
 RUN ln -s /opt/jdk-14.0.2+12 /opt/JDK_14
@@ -27,7 +29,7 @@ RUN mkdir /usr/src/url-shortner
 WORKDIR /usr/src/url-shortner
 
 # clone the repository with the code
-RUN git clone -b master git://github.com/ganesh0479/sample-doc.git
+RUN git clone -b master git://github.com/kpsurya95/url-shortner.git
 
 # install npm modules
 WORKDIR /usr/src/url-shortner/sample-doc/url-shortner
