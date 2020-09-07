@@ -7,10 +7,4 @@ before_install:
   - export JAVA_HOME=jdk-14.0.2+12
   - export PATH=$JAVA_HOME/bin:$PATH
   - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-  - az --version
-  - docker build -t url-shortner .
-  - docker login ${ACR_REGISTRY} -u ${ACR_REGISTRY_USER} -p ${ACR_REGISTRY_PWD}
-  - docker tag url-shortner ${ACR_REGISTRY}/sample/url-shortner
-  - docker push ${ACR_REGISTRY}/sample/url-shortner
+  - ls kpsurya95/url-shortne
