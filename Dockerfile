@@ -5,7 +5,7 @@ RUN  apt-get update \
   && apt-get install -y wget \
   && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install -y git
+RUN apt-get update && apt-get install -y git
 
 RUN wget --no-verbose -O /tmp/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz https://api.adoptopenjdk.net/v3/binary/latest/14/ga/linux/x64/jdk/hotspot/normal/adoptopenjdk?project=jdk
 RUN tar xzf /tmp/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz -C /opt/
