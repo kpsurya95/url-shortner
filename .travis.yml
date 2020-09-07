@@ -6,17 +6,9 @@ before_install:
   - tar xvzf ${TRAVIS_HOME}/OpenJDK14U-jdk_x64_linux_hotspot_14.0.2_12.tar.gz
   - export JAVA_HOME=jdk-14.0.2+12
   - export PATH=$JAVA_HOME/bin:$PATH
-  - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-  - az upgrade
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-  - az --version
-  - docker build -t url-shortner .
-  - docker login ${ACR_REGISTRY} -u ${ACR_REGISTRY_USER} -p ${ACR_REGISTRY_PWD}
-  - docker tag url-shortner ${ACR_REGISTRY}/sample/url-shortner
-  - docker push ${ACR_REGISTRY}/sample/url-shortner
-  - az login --service-principal -u ${ACR_REGISTRY_USER} -p ${ACR_REGISTRY_PWD} --tenant ${TENANT_ID}
-  - az aks get-credentials --resource-group ${AZ_RES_GRP} --name ${AZ_CLSTR} --file kube/url-service-cube.yml
-  - az aks get-credentials --resource-group ${AZ_RES_GRP} --name ${AZ_CLSTR} --file kube/url-kube.yml
-  - ls -ltr
-
+  - sudo apt-get update && sudo apt-get install -y apt-transport-https gnupg2
+  - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+  - echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+  - sudo apt-get update
+  - sudo apt-get install -y kubectl
+  - kubectl version --client
