@@ -14,7 +14,7 @@ after_success:
   - docker login ${ACR_REGISTRY} -u ${ACR_REGISTRY_USER} -p ${ACR_REGISTRY_PWD}
   - docker tag url-shortner ${ACR_REGISTRY}/sample/url-shortner
   - docker push ${ACR_REGISTRY}/sample/url-shortner
-  - az login
+  - az login --service-principal -u ${ACR_REGISTRY_USER} -p ${ACR_REGISTRY_PWD} --tenant ${TENANT_ID}
   - az aks get-credentials --resource-group ${AZ_RES_GRP} --name ${AZ_CLSTR} --file kube/url-service-cube.yml --admin
   - az aks get-credentials --resource-group ${AZ_RES_GRP} --name ${AZ_CLSTR} --file kube/url-kube.yml --admin
 
