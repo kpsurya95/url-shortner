@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: url-shortner
-          image: ${ACR_REGISTRY}/sample/url-shortner:latest
+          image: sivacontainerregistry.azurecr.io/sample/url-shortner:latest
           ports:
             - containerPort: 8080
           imagePullPolicy: Always
